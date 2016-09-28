@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../framework/bootstrap-3.3.5/css/bootstrap.css"/>
+    <script src="../framework/angular-1.2.16/angular.min.js"></script>
+    <script>
+       var myApp = angular.module('myApp',[]);
+        myApp.controller('ctrl.show.progress',function($scope){
+           $scope.vm = {
+               value:50,
+               style:'progress-bar-info',
+               showLabel:true
+           }
+        })
+    </script>
+</head>
+<body>
+<div class="container" ng-controller="ctrl.show.progress">
+    <h2>进度条</h2>
+          <div ng-class="{'progress':true}">
+              <div ng-class="['progress-bar',vm.style]" role="progressbar" ng-style="{width:vm.value + '%'}"
+                   aria-valuemin="0" aria-valuemax="100%">
+                  <div ng-if="vm.showLabel">{{vm.value}}%</div>
+              </div>
+          </div>
+    <h3>进度选项</h3>
+    <form class="form-inline">
+        <lable>进度</lable>
+            <input type="number" class="form-control" ng-model="vm.value"/>
+            <button class="btn btn-primary" ng-click="vm.value=0">0%</button>
+            <button class="btn btn-primary" ng-click="vm.value=50">50%</button>
+            <button class="btn btn-primary" ng-click="vm.value=100">100%</button>
+            <label>文字</label><input type="checkbox" ng-model="vm.showLabel"/>
+        <label>风格</label>
+        <select class="form-control" ng-model="vm.style">
+            <option value="progress-bar-success">progress-bar-success</option>
+            <option value="progress-bar-info">progress-bar-info</option>
+            <option value="progress-bar-warning">progress-bar-warning</option>
+        </select>
+    </form>
+</div>
+</body>
+</html>
